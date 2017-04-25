@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 注意命名空间 namespace-->
+<mapper namespace="pojo.StudentInfoMapper">
+	<!-- 添加Emp数据,parameterType -->
+	<insert id="insertStudent" parameterType="pojo.Student">
+		insert into student(name,password) values(#{name},#{password})
+	</insert>
+	<!-- http://blog.csdn.net/zwszws/article/details/27976715 -->
+	<!-- 更新Emp数据 -->
+	<update id="updateStudent" parameterType="pojo.Student">
+		update student set name=#{name},
+		where id=#{id}
+	</update>
+
+	<!-- 查询所有雇员信息 -->
+	<select id="getStudentList" resultType="pojo.Student">
+		select * from student
+	</select>
+	<!-- 查询所有雇员总数 -->
+	<select id="getStudentCount" resultType="java.lang.Integer">
+		select count(*) from student
+	</select>
+
+	<!-- 删除雇员信息 -->
+	<delete id="deleteStudent" parameterType="pojo.Student">
+		delete from student where id=#{id}
+	</delete>
+</mapper>
